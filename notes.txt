@@ -1,0 +1,27 @@
+Context api: 
+steps: 
+1. Make a new file named: CryptoContext.js
+2. import {createContext} from 'react'; 
+3. const ContextName = createContext(); 
+4. const CryptoContext = ({children})=>{
+    const [state1, setState1] = useState(null); 
+    const [state2, setState2] = useState(null); 
+    return (
+        <ContextName.provider value={{state1, state2, setState1 etc}} >
+            {children}
+        </ContextName.provider>
+    )
+}
+5. Wrap the App componet in the index.js with the CryptoContext tags. (first import it in index)
+6. To send the state to different components in the application: use the hook useContext(ContextName); 
+7. export const CryptoState = ()=>{
+    return useContext(ContextName);  --> this will contain all the state variables defined in the CrptyoContext function
+      // import {useContext} from 'react' 
+}
+
+
+Home page: 
+. It contains the banner /carousal which is display of latest cryptos, and a table containing list of all crypto and pageination. 
+. For the banner: 
+A dark background is downloaded in the public folder which is set as the background in the Banner.js . Then a carousal is used from the 
+react library of react-alice-carousal. And the rest is displaying the basic icons of the cois from fetching the Apis. 
