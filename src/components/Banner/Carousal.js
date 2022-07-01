@@ -1,5 +1,4 @@
 // imports
-
 import React from "react";
 import { Container, makeStyles, Typography } from "@material-ui/core";
 import axios from "axios";
@@ -38,6 +37,11 @@ const useStyles = makeStyles({
     textTransform: "uppercase",
   },
 });
+
+// ******************* the number with commas function****************
+export function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 // rafce function
 
@@ -81,12 +85,12 @@ const Carousal = () => {
             style={{
               fontSize: 22,
               fontWeight: 500,
-              fontFamily: "Cambria",
+              fontFamily: "montserrat",
             }}
           >
             {symbol}
             &nbsp;
-            {coin.current_price}
+            {numberWithCommas(coin.current_price)}
           </Typography>
         </div>
       </Link>

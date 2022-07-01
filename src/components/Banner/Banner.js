@@ -7,10 +7,11 @@ import Carousal from "./Carousal";
 const useStyles = makeStyles({
   banner: {
     backgroundImage: "url(./banner.jpg)",
+    minHeight: 540,
   },
 
   bannerContent: {
-    height: 400,
+    height: 540,
     display: "flex",
     flexDirection: "column",
     paddingTop: 25,
@@ -58,9 +59,9 @@ const Banner = () => {
             Get all the information about your favourite crypto currencies
           </Typography>
         </div>
+        {/* adding the carousal tag */}
+        <Carousal />
       </Container>
-      {/* adding the carousal tag */}
-      <Carousal />
     </div>
   );
 };

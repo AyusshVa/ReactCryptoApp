@@ -25,3 +25,32 @@ Home page:
 . For the banner: 
 A dark background is downloaded in the public folder which is set as the background in the Banner.js . Then a carousal is used from the 
 react library of react-alice-carousal. And the rest is displaying the basic icons of the cois from fetching the Apis. 
+
+
+Table : 
+.Wrap the entire table in a TableContainer tag. 
+.Inside it, add a Table tag, 
+. Insite it add a TableHead tag, then a TableRow tag, 
+. Then inside the TableRow tag, add the Row names in a TableCell tag
+. Iside the TableBody tag, create data using rows.
+. or In tableBody tag, use TableRows and TableCell tags of variant th, to add different rows 
+
+table: 
+
+// THE BREAKPOINTS ARE NOT WORKING DON'T KNOW WHY. THEREFORE USING MEDIA QUERIES. 
+Sizes : 
+xs: 0 or larger, (breakpoint : 0)
+sm: 600px or larger 
+md: 900 or larger, 
+lg: 1300 or larger,
+xl: >1535
+
+
+
+// While using the api to get single coin, its description has a lot of html, so we want to parse the html and render it on to our project. 
+description is acutally a array of objects, so we will render the parsed version of 0th index des. 
+
+npm i react-html-parse 
+import ReactHtmlParser from 'react-html-parser'; 
+
+{ReactHtmlParser(coin.description.en.split(". ")[0]) -> description in english(the api has lot of description), and split it when . occurs ie stop when a . occurs that much description is enough
