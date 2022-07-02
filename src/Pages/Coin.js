@@ -1,15 +1,18 @@
+// ***************************** imports; *********************************
+
 import { useParams } from "react-router-dom";
 import { SingleCoin } from "../config/api";
 import { useEffect, useState } from "react";
 import { CryptoState } from "../CryptoContext";
 import axios from "axios";
-import { makeStyles, ThemeProvider } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 import Chart from "../components/Chart";
 import parse from "html-react-parser";
 import { numberWithCommas } from "../components/Banner/Carousal";
 
 import { Typography, LinearProgress } from "@material-ui/core";
 
+// ***********************************************custom Styles ********************************************************
 const useStyles = makeStyles({
   container: {
     // contains the sidebar and the chart.
@@ -58,26 +61,34 @@ const useStyles = makeStyles({
     fontWeight: "normal",
   },
 });
+
+// ********************************* return function *******************************************
 const Coin = () => {
+  // ***************local states, and custorm params *****************************
   const { id } = useParams();
   const [coin, setCoin] = useState(null);
   const { currency, symbol } = CryptoState();
+  const classes = useStyles();
 
+  // *************************fetching coin details from SingleCoin endpoint**********************
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
     setCoin(data);
   };
 
+  // ********************useEffect ************************ for rendering
+
   useEffect(() => {
     fetchCoin();
   }, []);
 
-  const classes = useStyles();
-  if (!coin) return <LinearProgress />;
+  if (!coin) return <LinearProgress />; // this is important, else jab tak coin null rhega tab page break ho jaega because coin.name error dedega
   return (
     coin && (
+      // return value , inside a div.container / added a side bar and a chart component
       <div className={classes.container}>
         <div className={classes.sidebar}>
+          {/* **********************adding image, name and a little description ***********************/}
           <img
             src={coin.image.large}
             alt={coin.name}
@@ -89,7 +100,8 @@ const Coin = () => {
           <Typography variant="subtitle2" className={classes.description}>
             {parse(coin.description.en.split(". ")[0])}
           </Typography>
-          {/* // adding the rank / current price and market cap  */}
+          {/* **************************** adding the rank / current price and market cap  **************************/}
+          {/* Rank  */}
           <span
             style={{
               teaxtAlign: "center",
@@ -112,6 +124,7 @@ const Coin = () => {
             </Typography>
           </span>
           &nbsp; &nbsp;
+          {/* Current Price  */}
           <span style={{ teaxtAlign: "center", display: "flex" }}>
             <Typography
               variant="h5"
@@ -131,6 +144,7 @@ const Coin = () => {
             </Typography>
           </span>
           &nbsp; &nbsp;
+          {/* Market value */}
           <span style={{ teaxtAlign: "center", display: "flex" }}>
             <Typography
               variant="h5"
@@ -153,8 +167,9 @@ const Coin = () => {
             </Typography>
           </span>
           &nbsp; &nbsp;
-          <Chart coin={coin} />
+          {/* Chart component  */}
         </div>
+        <Chart coin={coin} />
       </div>
     )
   );

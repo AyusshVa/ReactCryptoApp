@@ -37,6 +37,16 @@ Table :
 
 table: 
 
+Dark Theme: 
+const darkTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#fff",
+    },
+    type: "dark",
+  },
+});
+
 // THE BREAKPOINTS ARE NOT WORKING DON'T KNOW WHY. THEREFORE USING MEDIA QUERIES. 
 Sizes : 
 xs: 0 or larger, (breakpoint : 0)
@@ -54,3 +64,24 @@ npm i react-html-parse
 import ReactHtmlParser from 'react-html-parser'; 
 
 {ReactHtmlParser(coin.description.en.split(". ")[0]) -> description in english(the api has lot of description), and split it when . occurs ie stop when a . occurs that much description is enough
+
+
+ <Line
+              data={{
+                labels: historicData.map((pair) => {
+                  let date = new Date(pair[0]);
+                  let time =
+                    date.getHours() > 12
+                      ? `${date.getHours() - 12}:${date.getMinutes()} PM`
+                      : `${date.getHours()}:${date.getMinutes()} AM`;
+                  return days === 1 ? time : date.toLocaleDateString();
+                }),
+
+                datasets: [
+                  {
+                    data: historicData.map((pair) => pair[1]),
+                    label: `Price`,
+                    borderColor: "#fff",
+                  }, // return the price as data set.
+                ],
+              }}

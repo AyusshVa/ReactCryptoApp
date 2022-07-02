@@ -6,7 +6,7 @@ export const SingleCoin = (id) =>
   `https://api.coingecko.com/api/v3/coins/${id}`;
 
 export const HistoricalChart = (id, days = 365, currency) =>
-  `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=${days}`;
+  `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=${days}`; // -> this returns array of array which contains date at zeroth index (ie in terms of number of second it is currently now from 1950 (or some date)) and time at the 1st index.
 
 // This endpoint is to get top 10 trending coins
 export const TrendingCoins = (currency) =>
